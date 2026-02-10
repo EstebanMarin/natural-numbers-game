@@ -32,7 +32,9 @@ Hint: This is `Nat.zero_add` in mathlib.
 -/
 
 theorem zero_add (n : ℕ) : 0 + n = n := by
-  sorry
+  induction n with
+  | zero => rfl
+  | succ d hd => rw [Nat.add_succ]; rw[hd];
 
 /-
 ## Level 3: Successor on the right
@@ -42,7 +44,11 @@ Hint: Use `Nat.add_succ`.
 -/
 
 theorem add_succ (n m : ℕ) : n + Nat.succ m = Nat.succ (n + m) := by
-  sorry
+  induction n with
+  | zero => rfl
+  | succ a d => rfl
+
+
 
 /-
 ## Level 4: Successor on the left

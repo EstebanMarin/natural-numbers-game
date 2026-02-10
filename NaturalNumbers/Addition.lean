@@ -17,8 +17,12 @@ Prove that adding zero on the right gives the same number.
 Hint: This is `Nat.add_zero` in mathlib.
 -/
 
+-- https://github.com/leanprover-community/NNG4/blob/main/Game/Levels/Addition/L01zero_add.lean
+
 theorem add_zero (n : ℕ) : n + 0 = n := by
-  sorry
+  induction n with
+  | zero => rfl
+  | succ d hd => rw [Nat.add_succ];  
 
 /-
 ## Level 2: Zero on the left

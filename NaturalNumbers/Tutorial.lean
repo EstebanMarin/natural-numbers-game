@@ -76,7 +76,7 @@ theorem exercise_1 : 5 + 3 = 8 := by
 
 -- Exercise 2: Use Nat.add_zero
 theorem exercise_2 (x : ℕ) : x + 0 = x := by
-  rfl
+  rw [Nat.add_zero]
 
 theorem rwtactic (x y: ℕ) (h: y = x + 7): 2 * y = 2 * (x + 7) := by
   rw [h]
@@ -114,7 +114,52 @@ theorem two_number_after_after_zero_backwards: 2 = Nat.succ (Nat.succ 0) := by
 
 -- https://adam.math.hhu.de/#/g/leanprover-community/nng4/world/Tutorial/level/5
 
+lemma add_zeroMine(a: ℕ): a + 0 = a := by
+  rfl
+
 theorem level5Theorem (a b c: ℕ): a + (b + 0) + (c + 0) =  a + b + c := by
-  sorry
+  rw [add_zeroMine]
+  rw [Nat.add_zero]
+
+-- https://adam.math.hhu.de/#/g/leanprover-community/nng4/world/Tutorial/level/6
+
+-- precission rewriting
+
+theorem level6Theorem (a b c: ℕ): a + (b + 0) + (c + 0) =  a + b + c := by
+  rw [add_zeroMine c]
+  rw [Nat.add_zero b]
+
+-- https://adam.math.hhu.de/#/g/leanprover-community/nng4/world/Tutorial/level/7
+
+lemma myadd_succ (a b : ℕ): a + Nat.succ b = Nat.succ (a + b) := by
+  rfl
+
+theorem succ_eq_add_one(a: ℕ): Nat.succ a = a + 1 := by
+  rw [one_eq_succ_zero]
+
+-- https://adam.math.hhu.de/#/g/leanprover-community/nng4/world/Tutorial/level/8
+
+theorem twoplustwo: 2 + 2 = 4 := by
+  --nth_rewrite 2 [two_eq_succ_one]
+  --rw [Nat.add_succ]
+
+  nth_rewrite 2 [two_eq_succ_one]
+  rw [myadd_succ]
+  --rw [one_eq_succ_zero]
+  --rw [Nat.add_succ]
+  --rw [Nat.add_zero]
+  --rfl
+
+-- nth_rewrite 2 [two_eq_succ_one] -- only change the second `2` to `succ 1`.
+-- rw [add_succ]
+-- rw [one_eq_succ_zero]
+-- rw [add_succ, add_zero] -- two rewrites at once
+-- rw [← three_eq_succ_two] -- change `succ 2` to `3`
+-- rw [← four_eq_succ_three]
+-- rfl
+
+-- addition world
+
+  
 
 

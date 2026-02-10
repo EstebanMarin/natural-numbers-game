@@ -1,0 +1,319 @@
+#+TITLE: Natural Numbers Game
+#+AUTHOR: Learning Lean 4
+#+PROPERTY: header-args:lean :tangle NaturalNumbers/Game.lean
+
+* Introduction
+
+Welcome to the Natural Numbers Game! In this game, you'll learn to prove theorems about natural numbers using Lean 4 and mathlib.
+
+* Setup
+
+First, let's import what we need from mathlib:
+
+#+begin_src lean
+import Mathlib.Data.Nat.Basic
+import Mathlib.Tactic
+
+namespace NaturalNumbersGame
+#+end_src
+
+* Tutorial World
+
+** Level 1: The ~rfl~ Tactic
+
+The ~rfl~ tactic proves goals of the form ~x = x~. It also works when both sides are definitionally equal.
+
+Let's prove that 2 + 2 = 4.
+
+#+begin_src lean
+example : 2 + 2 = 4 := by
+  rfl
+#+end_src
+
+** Level 2: The ~rw~ Tactic
+
+The ~rw~ (rewrite) tactic substitutes one thing for another. If you have a hypothesis ~h : a = b~, then ~rw [h]~ replaces all occurrences of ~a~ with ~b~ in the goal.
+
+#+begin_src lean
+theorem tutorial_level_2 (x y : ℕ) (h : x = y) : x + 0 = y := by
+  rw [h]
+  rfl
+#+end_src
+
+** Level 3: Using Library Lemmas
+
+Mathlib has many lemmas about natural numbers. For example, ~Nat.add_zero~ says that ~n + 0 = n~.
+
+#+begin_src lean
+theorem tutorial_level_3 (n : ℕ) : n + 0 = n := by
+  rw [Nat.add_zero]
+#+end_src
+
+** Level 4: The ~exact~ Tactic
+
+If we have a hypothesis that exactly matches the goal, we can use the ~exact~ tactic.
+
+#+begin_src lean
+theorem tutorial_level_4 (a b : ℕ) (h : a = b) : a = b := by
+  exact h
+#+end_src
+
+** Level 5: Multiple Rewrites
+
+We can chain multiple rewrites together.
+
+#+begin_src lean
+theorem tutorial_level_5 (a b c : ℕ) (h1 : a = b) (h2 : b = c) : a = c := by
+  rw [h1]
+  rw [h2]
+#+end_src
+
+** Exercises
+
+Try these yourself! Remove the ~sorry~ and replace with your proof.
+
+#+begin_src lean
+-- Exercise 1: Prove using rfl
+theorem exercise_1 : 5 + 3 = 8 := by
+  sorry
+
+-- Exercise 2: Use Nat.add_zero
+theorem exercise_2 (x : ℕ) : x + 0 = x := by
+  sorry
+
+-- Exercise 3: Chain hypotheses
+theorem exercise_3 (x y z : ℕ) (h1 : x = y) (h2 : y = z) : x = z := by
+  sorry
+
+-- Exercise 4: Combine tactics
+theorem exercise_4 (a b : ℕ) (h : a = b) : a + 0 = b := by
+  sorry
+#+end_src
+
+* Addition World
+
+In this world, we'll prove fundamental properties of addition on natural numbers.
+
+** Level 1: Addition with Zero
+
+Prove that adding zero on the right gives the same number.
+
+*Hint:* This is ~Nat.add_zero~ in mathlib.
+
+#+begin_src lean
+theorem add_zero (n : ℕ) : n + 0 = n := by
+  sorry
+#+end_src
+
+** Level 2: Zero on the Left
+
+Prove that adding zero on the left gives the same number.
+
+*Hint:* This is ~Nat.zero_add~ in mathlib.
+
+#+begin_src lean
+theorem zero_add (n : ℕ) : 0 + n = n := by
+  sorry
+#+end_src
+
+** Level 3: Successor on the Right
+
+Prove that ~n + succ m = succ (n + m)~.
+
+*Hint:* Use ~Nat.add_succ~.
+
+#+begin_src lean
+theorem add_succ (n m : ℕ) : n + Nat.succ m = Nat.succ (n + m) := by
+  sorry
+#+end_src
+
+** Level 4: Successor on the Left
+
+Prove that ~succ n + m = succ (n + m)~.
+
+*Hint:* Use ~Nat.succ_add~.
+
+#+begin_src lean
+theorem succ_add (n m : ℕ) : Nat.succ n + m = Nat.succ (n + m) := by
+  sorry
+#+end_src
+
+** Level 5: Commutativity of Addition
+
+Prove that addition is commutative.
+
+*Hint:* Use ~Nat.add_comm~.
+
+#+begin_src lean
+theorem add_comm (n m : ℕ) : n + m = m + n := by
+  sorry
+#+end_src
+
+** Level 6: Associativity of Addition
+
+Prove that addition is associative.
+
+*Hint:* Use ~Nat.add_assoc~.
+
+#+begin_src lean
+theorem add_assoc (a b c : ℕ) : (a + b) + c = a + (b + c) := by
+  sorry
+#+end_src
+
+** Level 7: Using Induction
+
+Now let's prove something using induction. We'll prove ~zero_add~ from scratch without using the library lemma.
+
+#+begin_src lean
+theorem zero_add_induction (n : ℕ) : 0 + n = n := by
+  induction n with
+  | zero =>
+    -- Base case: 0 + 0 = 0
+    sorry
+  | succ n ih =>
+    -- Inductive step: assume 0 + n = n (hypothesis `ih`),
+    -- prove 0 + succ n = succ n
+    sorry
+#+end_src
+
+** Level 8: Left Cancellation
+
+Prove this using commutativity and previous lemmas.
+
+#+begin_src lean
+theorem add_left_cancel (a b c : ℕ) (h : a + b = a + c) : b = c := by
+  sorry
+#+end_src
+
+** Challenge Exercises
+
+#+begin_src lean
+theorem add_right_comm (a b c : ℕ) : a + b + c = a + c + b := by
+  sorry
+
+theorem succ_eq_add_one (n : ℕ) : Nat.succ n = n + 1 := by
+  sorry
+#+end_src
+
+* Multiplication World
+
+In this world, we'll prove fundamental properties of multiplication on natural numbers.
+
+** Level 1: Multiplication by Zero
+
+Prove that multiplying by zero gives zero.
+
+#+begin_src lean
+theorem mul_zero (n : ℕ) : n * 0 = 0 := by
+  sorry
+#+end_src
+
+** Level 2: Zero Multiplication
+
+Prove that zero times anything is zero.
+
+#+begin_src lean
+theorem zero_mul (n : ℕ) : 0 * n = 0 := by
+  sorry
+#+end_src
+
+** Level 3: Multiplication by One
+
+Prove that multiplying by one gives the same number.
+
+#+begin_src lean
+theorem mul_one (n : ℕ) : n * 1 = n := by
+  sorry
+#+end_src
+
+** Level 4: One Multiplication
+
+Prove that one times anything gives that number.
+
+#+begin_src lean
+theorem one_mul (n : ℕ) : 1 * n = n := by
+  sorry
+#+end_src
+
+** Level 5: Multiplication with Successor
+
+Prove that ~n * succ m = n * m + n~.
+
+#+begin_src lean
+theorem mul_succ (n m : ℕ) : n * Nat.succ m = n * m + n := by
+  sorry
+#+end_src
+
+** Level 6: Commutativity of Multiplication
+
+Prove that multiplication is commutative.
+
+#+begin_src lean
+theorem mul_comm (n m : ℕ) : n * m = m * n := by
+  sorry
+#+end_src
+
+** Level 7: Distributivity
+
+Prove that multiplication distributes over addition.
+
+#+begin_src lean
+theorem mul_add (a b c : ℕ) : a * (b + c) = a * b + a * c := by
+  sorry
+#+end_src
+
+** Level 8: Associativity of Multiplication
+
+Prove that multiplication is associative.
+
+#+begin_src lean
+theorem mul_assoc (a b c : ℕ) : (a * b) * c = a * (b * c) := by
+  sorry
+#+end_src
+
+** Challenge: Prove from Scratch
+
+Use induction to prove commutativity without using ~Nat.mul_comm~.
+
+#+begin_src lean
+theorem mul_comm_induction (n m : ℕ) : n * m = m * n := by
+  induction m with
+  | zero =>
+    sorry
+  | succ m ih =>
+    sorry
+#+end_src
+
+* Closing
+
+#+begin_src lean
+end NaturalNumbersGame
+#+end_src
+
+* Useful Mathlib Lemmas Reference
+
+** Addition
+- ~Nat.add_zero~ : ~n + 0 = n~
+- ~Nat.zero_add~ : ~0 + n = n~
+- ~Nat.add_succ~ : ~n + succ m = succ (n + m)~
+- ~Nat.succ_add~ : ~succ n + m = succ (n + m)~
+- ~Nat.add_comm~ : ~n + m = m + n~
+- ~Nat.add_assoc~ : ~(a + b) + c = a + (b + c)~
+
+** Multiplication
+- ~Nat.mul_zero~ : ~n * 0 = 0~
+- ~Nat.zero_mul~ : ~0 * n = 0~
+- ~Nat.mul_one~ : ~n * 1 = n~
+- ~Nat.one_mul~ : ~1 * n = n~
+- ~Nat.mul_succ~ : ~n * succ m = n * m + n~
+- ~Nat.mul_comm~ : ~n * m = m * n~
+- ~Nat.mul_assoc~ : ~(a * b) * c = a * (b * c)~
+- ~Nat.left_distrib~ : ~a * (b + c) = a * b + a * c~
+
+* Tips
+
+1. Use ~#check Nat.add_comm~ to see the type of a lemma
+2. Use ~#check~ to verify the type of expressions
+3. If you get stuck, look at mathlib's proofs for inspiration
+4. The induction levels are harder - save them for after you understand the basics
+5. You can tangle this file with ~C-c C-v t~ to generate the Lean source file

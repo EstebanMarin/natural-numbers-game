@@ -72,16 +72,49 @@ Remove the `sorry` and replace with your proof.
 
 -- Exercise 1: Prove using rfl
 theorem exercise_1 : 5 + 3 = 8 := by
-  sorry
+  rfl
 
 -- Exercise 2: Use Nat.add_zero
 theorem exercise_2 (x : ℕ) : x + 0 = x := by
-  sorry
+  rfl
+
+theorem rwtactic (x y: ℕ) (h: y = x + 7): 2 * y = 2 * (x + 7) := by
+  rw [h]
 
 -- Exercise 3: Chain hypotheses
 theorem exercise_3 (x y z : ℕ) (h1 : x = y) (h2 : y = z) : x = z := by
-  sorry
+  rw [h1]
+  rw [h2]
 
 -- Exercise 4: Combine tactics
-theorem exercise_4 (a b : ℕ) (h : a = b) : a + 0 = b := by
+--theorem exercise_4 (a b : ℕ) (h : a = b) : a + 0 = b := by
+--  sorry
+
+theorem rlfTactic (a b: ℕ): 37 * a + b = 37 * a + b := by
+  rfl
+
+-- https://adam.math.hhu.de/#/g/leanprover-community/nng4/world/Tutorial/level/2
+
+theorem level2 (a b: ℕ)(h: a = b + 7): 2 * a = 2 * (b + 7) := by
+  rw [h]
+
+-- https://adam.math.hhu.de/#/g/leanprover-community/nng4/world/Tutorial/level/3
+
+lemma one_eq_succ_zero: 1 = Nat.succ 0 := by
+  rfl
+
+lemma two_eq_succ_one: 2 = Nat.succ 1 := by
+  rfl
+
+theorem two_number_after_after_zero: 2 = Nat.succ (Nat.succ 0) := by
+  rw [two_eq_succ_one]
+
+theorem two_number_after_after_zero_backwards: 2 = Nat.succ (Nat.succ 0) := by
+  rw [← one_eq_succ_zero]
+
+-- https://adam.math.hhu.de/#/g/leanprover-community/nng4/world/Tutorial/level/5
+
+theorem level5Theorem (a b c: ℕ): a + (b + 0) + (c + 0) =  a + b + c := by
   sorry
+
+

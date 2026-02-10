@@ -6,6 +6,31 @@
 
 Welcome to the Natural Numbers Game! In this game, you'll learn to prove theorems about natural numbers using Lean 4 and mathlib.
 
+* Building Instructions
+
+To set up and build this project, run the following commands:
+
+#+begin_src bash
+# Download mathlib cache (this will take a few minutes the first time)
+lake exe cache get
+
+# Build the project
+lake build
+#+end_src
+
+** How to Use This File
+
+1. *Option 1 - Use the Org file directly:* Open this file in Emacs and use ~C-c C-v t~ to tangle it, which will generate ~NaturalNumbers/Game.lean~ with all the code blocks.
+
+2. *Option 2 - Use the separate Lean files:* The project includes pre-made files:
+   - ~NaturalNumbers/Tutorial.lean~
+   - ~NaturalNumbers/Addition.lean~
+   - ~NaturalNumbers/Multiplication.lean~
+
+   Open any of these in VS Code with the Lean 4 extension.
+
+3. *Solving exercises:* Replace ~sorry~ with your proofs. Lean will automatically check them and show green checkmarks for valid proofs or red squiggles for errors.
+
 * Setup
 
 First, let's import what we need from mathlib:

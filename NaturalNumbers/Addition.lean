@@ -21,7 +21,7 @@ Hint: This is `Nat.add_zero` in mathlib.
 
 theorem add_zero (n : ℕ) : n + 0 = n := by
   induction n with
-  | zero => rfl
+  | zero => exact?
   | succ d hd => rw [Nat.add_succ];  
 
 /-
@@ -33,7 +33,7 @@ Hint: This is `Nat.zero_add` in mathlib.
 
 theorem zero_add (n : ℕ) : 0 + n = n := by
   induction n with
-  | zero => rfl
+  | zero => rw[Nat.add_zero]
   | succ d hd => rw [Nat.add_succ]; rw[hd];
 
 /-
@@ -58,7 +58,7 @@ Hint: Use `Nat.succ_add`.
 -/
 
 theorem succ_add (n m : ℕ) : Nat.succ n + m = Nat.succ (n + m) := by
-  sorry
+  exact? -- exact Nat.succ_add n m
 
 /-
 ## Level 5: Commutativity of addition
@@ -68,7 +68,7 @@ Hint: Use `Nat.add_comm`.
 -/
 
 theorem add_comm (n m : ℕ) : n + m = m + n := by
-  sorry
+  exact?
 
 /-
 ## Level 6: Associativity of addition
@@ -91,11 +91,11 @@ theorem zero_add_induction (n : ℕ) : 0 + n = n := by
   induction n with
   | zero =>
     -- Base case: 0 + 0 = 0
-    sorry
+    exact?
   | succ n ih =>
     -- Inductive step: assume 0 + n = n (hypothesis `ih`),
     -- prove 0 + succ n = succ n
-    sorry
+    exact?
 
 /-
 ## Level 8: More complex proof
@@ -104,16 +104,20 @@ Prove this using commutativity and previous lemmas.
 -/
 
 theorem add_left_cancel (a b c : ℕ) (h : a + b = a + c) : b = c := by
-  sorry
+  exact?
 
 /-
 ## Challenge Exercises
 -/
 
 theorem add_right_comm (a b c : ℕ) : a + b + c = a + c + b := by
-  sorry
+  exact?
 
 theorem succ_eq_add_one (n : ℕ) : Nat.succ n = n + 1 := by
-  sorry
+  exact?
 
 end NaturalNumbersGame
+
+#check Nat.le_trans
+
+

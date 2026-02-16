@@ -342,3 +342,9 @@ end NaturalNumbersGame
 3. If you get stuck, look at mathlib's proofs for inspiration
 4. The induction levels are harder - save them for after you understand the basics
 5. You can tangle this file with ~C-c C-v t~ to generate the Lean source file
+
+
+Some strategy You
+Unverified
+9:02 AM
+when to use simp? exact? omega? or should we just play som type tetris here?

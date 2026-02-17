@@ -16,9 +16,15 @@ namespace NaturalNumbersGame
 
 Prove that multiplying by zero gives zero.
 -/
+lemma one_eq_succ_zero: 1 = Nat.succ 0 := by
+  rfl
+lemma mul_one (m : ℕ) : m * 1 = m := by 
+  exact Nat.mul_one m
 
-theorem mul_zero (n : ℕ) : n * 0 = 0 := by
-  sorry
+theorem fmul_zero (n : ℕ) : n * 1 = n := by
+  rw [one_eq_succ_zero];
+  rw [Nat.mul_one];
+  
 
 /-
 ## Level 2: Zero multiplication
@@ -26,7 +32,7 @@ theorem mul_zero (n : ℕ) : n * 0 = 0 := by
 Prove that zero times anything is zero.
 -/
 
-theorem zero_mul (n : ℕ) : 0 * n = 0 := by
+theorem zero_mulf (n : ℕ) : 0 * n = 0 := by
   sorry
 
 /-

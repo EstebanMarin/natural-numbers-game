@@ -5,6 +5,8 @@ In this world, we'll prove fundamental properties of addition
 on natural numbers using mathlib.
 -/
 
+-- https://github.com/ReallyLiri/lean-natural-number-game-solutions/tree/main/2_Addition_World 
+
 import Mathlib.Data.Nat.Basic
 import Mathlib.Tactic
 
@@ -18,10 +20,10 @@ Hint: This is `Nat.add_zero` in mathlib.
 -/
 
 -- https://github.com/leanprover-community/NNG4/blob/main/Game/Levels/Addition/L01zero_add.lean
-
+-- https://www.youtube.com/watch?v=136e2d8pWlc
 theorem add_zero (n : ℕ) : n + 0 = n := by
   induction n with
-  | zero => exact?
+  | zero => exact Nat.zero_add 0
   | succ d hd => rw [Nat.add_succ];  
 
 /-
@@ -78,7 +80,7 @@ Hint: Use `Nat.add_assoc`.
 -/
 
 theorem add_assoc (a b c : ℕ) : (a + b) + c = a + (b + c) := by
-  sorry
+  rw [Nat.add_assoc]
 
 /-
 ## Level 7: Using induction
@@ -115,6 +117,32 @@ theorem add_right_comm (a b c : ℕ) : a + b + c = a + c + b := by
 
 theorem succ_eq_add_one (n : ℕ) : Nat.succ n = n + 1 := by
   exact?
+
+
+theorem succ_addd (a b : ℕ) : Nat.succ a + b = Nat.succ (a + b) := by
+  induction b with
+  | zero => rfl
+  | succ b h₁ => rw [Nat.add_succ, Nat.add_succ, h₁] 
+    
+theorem add_commf (a b : ℕ) : a + b = b + a := by 
+  induction b with 
+  | zero => rw [Nat.zero_add]; rw [Nat.add_zero]
+  | succ b h₁ => rw [Nat.add_succ]; rw [h₁]; rw [Nat.succ_add]
+
+theorem fadd_assoc (a b c : ℕ) : a + b + c = a + (b + c) := by
+  induction c with
+  | zero => rw [Nat.add_zero]; rw [Nat.add_zero]
+  | succ c h => rw [Nat.add_succ]; rw [Nat.add_succ]; rw [h]; rw [← Nat.add_succ]
+
+theorem fadd_right_comm (a b c : ℕ) : a + b + c = a + c + b := by
+   rw [Nat.add_assoc]
+   rw [Nat.add_assoc]
+   rw [Nat.add_comm b c]
+
+
+
+  
+
 
 end NaturalNumbersGame
 

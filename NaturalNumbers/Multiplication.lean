@@ -33,9 +33,45 @@ theorem zero_mul (m : ℕ) : 0 * m = 0 := by
 
 theorem succ_mul (a b : ℕ) : Nat.succ a * b = a * b + b := by
   induction b with
-  | zero => rw [mul_zero]; rw[mul_zero]; rfl
-  | succ a h₁ => rw [mul_succ]; rw[h₁]
+  | zero => 
+    rw [mul_zero]; 
+    rw[mul_zero]; 
+    rfl
+  | succ a h₁ => 
+    rw [Nat.add_one_mul]
+--    rw [mul_succ]; 
+--    rw [h₁]; 
+    -- rw [mul_succ]; 
+    -- rw [succ_eq_add_one]; 
+    -- rw [add_assoc];
+    -- rw [← add_assoc a]
+    -- rw [add_comm a]
+
+
 --rw [succ_mul a]  
 --rw [Nat.add_one_mul]
+
+theorem mul_comm (a b : ℕ) : a * b = b * a := by
+  induction b with 
+  | zero => 
+    rw[Nat.mul_comm]
+  | succ a h₁ =>
+    rw [add_one_mul];
+    rw [←h₁];
+    rfl;
+
+theorem one_mul (m : ℕ): 1 * m = m := by
+  induction m with
+  | zero => rw [mul_zero]
+  | succ a h₁ => rw [Nat.one_mul]
+
+
+theorem two_mul (m : ℕ): 2 * m = m + m := by
+  induction m with 
+  | zero => rw[add_zero]
+  | succ n h₁ => rw [succ_mul, one_mul]
+
+
+
 
 end NaturalNumbersGame

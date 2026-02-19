@@ -24,7 +24,6 @@ lemma mul_one (m : ℕ) : m * 1 = m := by
 lemma mul_succ (a b : ℕ) : a * Nat.succ b = a * b + a  := by 
   exact Nat.mul_succ a b
 
-#check Nat.zero_add
 
 theorem zero_mul (m : ℕ) : 0 * m = 0 := by
   induction m with
@@ -39,17 +38,7 @@ theorem succ_mul (a b : ℕ) : Nat.succ a * b = a * b + b := by
     rfl
   | succ a h₁ => 
     rw [Nat.add_one_mul]
---    rw [mul_succ]; 
---    rw [h₁]; 
-    -- rw [mul_succ]; 
-    -- rw [succ_eq_add_one]; 
-    -- rw [add_assoc];
-    -- rw [← add_assoc a]
-    -- rw [add_comm a]
 
-
---rw [succ_mul a]  
---rw [Nat.add_one_mul]
 
 theorem mul_comm (a b : ℕ) : a * b = b * a := by
   induction b with 
@@ -71,6 +60,20 @@ theorem two_mul (m : ℕ): 2 * m = m + m := by
   | zero => rw[add_zero]
   | succ n h₁ => rw [succ_mul, one_mul]
 
+theorem mul_add (a b c : ℕ) : a * (b + c) = a * b + a * c := by
+  induction a with 
+  | zero => 
+    rw [zero_mul]; 
+    rw [zero_mul]; 
+    rw [zero_mul];
+  | succ a h₁ => 
+    rw [add_one_mul];
+    rw [add_one_mul];
+    rw [add_one_mul];
+    rw [h₁];
+    rw [add_comm];
+    rw [add_comm];
+    exact Nat.add_add_add_comm (a * b) (a * c) b c
 
 
 

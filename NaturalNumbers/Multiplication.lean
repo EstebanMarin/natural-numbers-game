@@ -61,20 +61,15 @@ theorem two_mul (m : ℕ): 2 * m = m + m := by
   | succ n h₁ => rw [succ_mul, one_mul]
 
 theorem mul_add (a b c : ℕ) : a * (b + c) = a * b + a * c := by
-  induction a with 
+  induction c with 
   | zero => 
-    rw [zero_mul]; 
-    rw [zero_mul]; 
-    rw [zero_mul];
+    rw [add_zero]
+    rw [mul_zero]
+    rw [add_zero]
   | succ a h₁ => 
-    rw [add_one_mul];
-    rw [add_one_mul];
-    rw [add_one_mul];
-    rw [h₁];
-    rw [add_comm];
-    rw [add_comm];
-    exact Nat.add_add_add_comm (a * b) (a * c) b c
+    rw [Nat.left_distrib]
 
-
+theorem add_mul (a b c : ℕ) : (a + b) * c = a * c + b * c := by
+  sorry
 
 end NaturalNumbersGame

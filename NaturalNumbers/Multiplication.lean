@@ -21,9 +21,16 @@ lemma one_eq_succ_zero: 1 = Nat.succ 0 := by
 lemma mul_one (m : ℕ) : m * 1 = m := by 
   exact Nat.mul_one m
 
-theorem fmul_zero (n : ℕ) : n * 1 = n := by
-  rw [one_eq_succ_zero];
-  rw [Nat.mul_one];
+lemma mul_succ (a b : ℕ) : a * Nat.succ b = a * b + a  := by 
+  exact Nat.mul_succ a b
+
+#check Nat.zero_add
+
+theorem zero_mul (m : ℕ) : 0 * m = 0 := by
+  induction m with
+  | zero => rw [mul_zero]
+  | succ a h₁ => rw [mul_succ]; rw[h₁]
+
   
 
 /-

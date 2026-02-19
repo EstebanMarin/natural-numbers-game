@@ -69,7 +69,14 @@ theorem mul_add (a b c : ℕ) : a * (b + c) = a * b + a * c := by
   | succ a h₁ => 
     rw [Nat.left_distrib]
 
-theorem add_mul (a b c : ℕ) : (a + b) * c = a * c + b * c := by
+theorem add_mul (a b c : ℕ) : (a + b) * c = a * c + b * c := by 
+  rw [mul_comm]; 
+  rw [mul_add]; 
+  rw [mul_comm]; 
+  rw [mul_comm b c]
+
+theorem mul_assoc (a b c : ℕ) : (a * b) * c = a * (b * c) := by
   sorry
 
 end NaturalNumbersGame
+  

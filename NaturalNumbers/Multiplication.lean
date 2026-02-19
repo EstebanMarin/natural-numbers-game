@@ -31,80 +31,11 @@ theorem zero_mul (m : ℕ) : 0 * m = 0 := by
   | zero => rw [mul_zero]
   | succ a h₁ => rw [mul_succ]; rw[h₁]
 
-  
-
-/-
-## Level 2: Zero multiplication
-
-Prove that zero times anything is zero.
--/
-
-theorem zero_mulf (n : ℕ) : 0 * n = 0 := by
-  sorry
-
-/-
-## Level 3: Multiplication by one
-
-Prove that multiplying by one gives the same number.
--/
-
-theorem mul_one (n : ℕ) : n * 1 = n := by
-  sorry
-
-/-
-## Level 4: One multiplication
-
-Prove that one times anything gives that number.
--/
-
-theorem one_mul (n : ℕ) : 1 * n = n := by
-  sorry
-
-/-
-## Level 5: Multiplication with successor
-
-Prove that `n * succ m = n * m + n`.
--/
-
-theorem mul_succ (n m : ℕ) : n * Nat.succ m = n * m + n := by
-  sorry
-
-/-
-## Level 6: Commutativity of multiplication
-
-Prove that multiplication is commutative.
--/
-
-theorem mul_comm (n m : ℕ) : n * m = m * n := by
-  sorry
-
-/-
-## Level 7: Distributivity
-
-Prove that multiplication distributes over addition.
--/
-
-theorem mul_add (a b c : ℕ) : a * (b + c) = a * b + a * c := by
-  sorry
-
-/-
-## Level 8: Associativity of multiplication
-
-Prove that multiplication is associative.
--/
-
-theorem mul_assoc (a b c : ℕ) : (a * b) * c = a * (b * c) := by
-  sorry
-
-/-
-## Challenge: Prove from scratch using induction
--/
-
-theorem mul_comm_induction (n m : ℕ) : n * m = m * n := by
-  induction m with
-  | zero =>
-    sorry
-  | succ m ih =>
-    sorry
+theorem succ_mul (a b : ℕ) : Nat.succ a * b = a * b + b := by
+  induction b with
+  | zero => rw [mul_zero]; rw[mul_zero]; rfl
+  | succ a h₁ => rw [mul_succ]; rw[h₁]
+--rw [succ_mul a]  
+--rw [Nat.add_one_mul]
 
 end NaturalNumbersGame

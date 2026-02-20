@@ -35,3 +35,12 @@ def mul: ℕ → ℕ → ℕ
 def power: ℕ → ℕ → ℕ 
   | _, Nat.zero => 1
   | m, Nat.succ n => mul m (power m n)
+
+
+-- chapter 3
+
+theorem fst_of_two_props:
+  ∀ a b: Prop, a → b → a :=  by 
+    intro a b
+    intro h₁ h₂
+    apply h₁ 

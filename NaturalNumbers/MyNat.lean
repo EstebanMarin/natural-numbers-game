@@ -41,6 +41,5 @@ def power: ℕ → ℕ → ℕ
 
 theorem fst_of_two_props:
   ∀ a b: Prop, a → b → a :=  by 
-    intro a b
-    intro h₁ h₂
+    intro a b h₁ h₂
     apply h₁ 

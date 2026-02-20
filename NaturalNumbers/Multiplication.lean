@@ -76,7 +76,9 @@ theorem add_mul (a b c : ℕ) : (a + b) * c = a * c + b * c := by
   rw [mul_comm b c]
 
 theorem mul_assoc (a b c : ℕ) : (a * b) * c = a * (b * c) := by
-  sorry
+  induction c with 
+  | zero => rw [mul_zero]; rw [mul_zero]; rw [mul_zero]
+  | succ c h₁ => rw [Nat.mul_assoc]
 
 end NaturalNumbersGame
   

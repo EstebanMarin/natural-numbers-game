@@ -161,5 +161,13 @@ theorem twoplustwo: 2 + 2 = 4 := by
 -- addition world
 
   
+-- https://lean-lang.org/theorem_proving_in_lean4/Propositions-and-Proofs/#propositions-and-proofs
 
+#check And
+#check Not
 
+axiom and_commut: ∀ p q: Prop, p ∧ q → q ∧ p  
+
+variable (p q : Prop)
+
+#check and_commut p q
